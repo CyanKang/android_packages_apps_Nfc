@@ -93,8 +93,8 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 
 
-public class NfcService implements DeviceHostListener
-        implements OnPreferenceChangeListener {
+public class NfcService implements DeviceHostListener {
+
     static final boolean DBG = false;
     static final String TAG = "NfcService";
 
@@ -2142,14 +2142,14 @@ public class NfcService implements DeviceHostListener
             resolver.registerContentObserver(Settings.System
                     .getUriFor(Settings.System.NFC_POLLING_MODE),
                     false, this);
-            POLLING_MODE = Settings.System.getInt(resolver,
-                    Settings.System.NFC_POLLING_MODE, SCREEN_STATE_ON_UNLOCKED);
+            NFC_POLLING_MODE = Settings.System.getInt(resolver,
+                    Settings.System.NFC_POLLING_MODE, ScreenStateHelper.SCREEN_STATE_ON_UNLOCKED);
         }
 
         @Override
         public void onChange(boolean selfChange) {
-            POLLING_MODE = Settings.System.getInt(resolver,
-                    Settings.System.NFC_POLLING_MODE, SCREEN_STATE_ON_UNLOCKED);
+            NFC_POLLING_MODE = Settings.System.getInt(resolver,
+                    Settings.System.NFC_POLLING_MODE, ScreenStateHelper.SCREEN_STATE_ON_UNLOCKED);
         }
     }
 }
